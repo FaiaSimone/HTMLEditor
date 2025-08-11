@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Markup Editor</title>
+    <style>
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Live Markup Editor</h1>
+        <form id="form" name="form">
+            <textarea id="content" name="content" rows="25%" cols="100%" oninput="update()"></textarea>
+        </form>
+        <iframe id="dynamicContent" name="dynamicContent" width="750" height="480"></iframe>
+    </div>
+    <script>
+        const iFrame = document.getElementById('dynamicContent');
+        const iFrameDocument = iFrame.contentDocument;
+        
+        function update() {
+            const content = document.getElementById('content').value;
+            iFrameDocument.open();
+            iFrameDocument.write(content);
+            iFrameDocument.close();
+        }
+    </script>
+</body>
+</html>
